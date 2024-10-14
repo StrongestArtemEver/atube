@@ -11,7 +11,7 @@ type Connect struct {
 }
 
 func (c *Connect) ConnectToDb() {
-    dsn := "host=localhost user=artem password=dinis1981 dbname=mydb port=5432 sslmode=disable"
+    dsn := "host=localhost user=postgres password=Dinis1981@ dbname=mydb port=5432 sslmode=disable"
     db, err := gorm.Open(postgres.Open(dsn), &gorm.Config{})
     if err != nil {
         log.Fatal("Ошибка подключения к базе данных: ", err)

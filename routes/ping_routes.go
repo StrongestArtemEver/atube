@@ -6,7 +6,7 @@ import (
 )
 
 func RegisterPingRoutes(router *gin.Engine) {
-	pingControlle := controllers.PingController{}
+	pingController := controllers.PingController{}
 
-	router.GET("/ping",pingControlle.Ping)
+	router.GET("/ping",pingController.Ping)
 }
