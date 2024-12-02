@@ -14,4 +14,5 @@ func RegisterVideoRoutes(router *gin.Engine, db *gorm.DB) {
 	}
 
 	router.POST("/video/upload", videoController.UploadVideo)
+	router.GET("/videos", videoController.GetAllVideo)
 }

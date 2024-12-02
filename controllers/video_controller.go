@@ -2,7 +2,9 @@ package controllers
 
 import (
 	"atube/services"
+	"context"
 	"fmt"
+	"net/http"
 
 	"github.com/gin-gonic/gin"
 	"gorm.io/gorm"
@@ -42,4 +44,16 @@ func (vc *VideoController) UploadVideo(c *gin.Context) {
 	}
 
 	c.JSON(200, response)
+}
+
+func (vc *VideoController) GetAllVideo(c *gin.Context) {
+	ctx := context.Background()
+
+	videos, err := vc.videoService.GetAllVideo(ctx)
+	if err != nil {
+		c.JSON(http.StatusInternalServerError, gin.H{"error": err.Error()})
+		return
+	}
+
+	c.JSON(http.StatusOK, gin.H{"videos": videos})
 }
