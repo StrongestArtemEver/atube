@@ -46,6 +46,13 @@ func (vc *VideoController) UploadVideo(c *gin.Context) {
 	c.JSON(200, response)
 }
 
+// GetAllVideo получает список всех видео.
+// @Summary Получить список видео
+// @Description Возвращает список всех доступных видео
+// @Tags Video
+// @Produce json
+// @Success 200 {array} models.Video "Успешный ответ"
+// @Router /videos [get]
 func (vc *VideoController) GetAllVideo(c *gin.Context) {
 	ctx := context.Background()
 

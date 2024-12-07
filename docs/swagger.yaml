@@ -1,0 +1,103 @@
+basePath: /api/v1
+definitions:
+  models.Bookmark:
+    properties:
+      addedAt:
+        type: string
+      id:
+        type: integer
+      userID:
+        type: integer
+      videoID:
+        type: integer
+    type: object
+  models.Comment:
+    properties:
+      content:
+        type: string
+      createdAt:
+        type: string
+      id:
+        type: integer
+      userID:
+        type: integer
+      videoID:
+        type: integer
+    type: object
+  models.Video:
+    properties:
+      bookmarks:
+        items:
+          $ref: '#/definitions/models.Bookmark'
+        type: array
+      comments:
+        items:
+          $ref: '#/definitions/models.Comment'
+        type: array
+      description:
+        type: string
+      duration:
+        description: Duration in seconds
+        type: integer
+      fileURL:
+        type: string
+      id:
+        type: integer
+      likesCount:
+        type: integer
+      thumbnailURL:
+        type: string
+      title:
+        type: string
+      uploadDate:
+        type: string
+      userID:
+        type: integer
+      viewsCount:
+        type: integer
+    type: object
+host: localhost:8081
+info:
+  contact:
+    email: support@example.com
+    name: API Support
+    url: http://www.example.com/support
+  description: This is a sample server.
+  license:
+    name: Apache 2.0
+    url: http://www.apache.org/licenses/LICENSE-2.0.html
+  termsOfService: http://example.com/terms/
+  title: API Documentation
+  version: "1.0"
+paths:
+  /ping:
+    get:
+      consumes:
+      - application/json
+      description: Проверяет работоспособность сервера
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: pong
+          schema:
+            type: string
+      summary: Ping endpoint
+      tags:
+      - health
+  /videos:
+    get:
+      description: Возвращает список всех доступных видео
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: Успешный ответ
+          schema:
+            items:
+              $ref: '#/definitions/models.Video'
+            type: array
+      summary: Получить список видео
+      tags:
+      - Video
+swagger: "2.0"
