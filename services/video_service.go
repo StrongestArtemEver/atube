@@ -74,3 +74,14 @@ func (vs *VideoService) UploadVideo(c *gin.Context) (string, string, error) {
 
 	return videoURL, thumbnailURL, nil
 }
+
+
+func (vs *VideoService) GetAllVideo(ctx context.Context) ([]models.Video,error) {
+	var videos []models.Video
+
+	if err := vs.db.Find(&videos).Error; err != nil {
+		return nil,fmt.Errorf("ошибка при получении видео: %v" ,err)
+	}
+	
+	return videos,nil
+}

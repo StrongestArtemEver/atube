@@ -12,7 +12,7 @@ type User struct {
 	Password string `gorm:"not null"`
 	Created time.Time `gorm:"autoCreateTime"`
 	DeletedAt gorm.DeletedAt `gorm:"index"`
-    Videos    []Video        `gorm:"foreignKey:UserID"`
-    Bookmarks []Bookmark     `gorm:"foreignKey:UserID"`
-    Comments  []Comment      `gorm:"foreignKey:UserID"`
+  Videos    []Video        `gorm:"foreignKey:UserID"`
+  Bookmarks []Bookmark     `gorm:"foreignKey:UserID"`
+  Comments  []Comment      `gorm:"foreignKey:UserID"`
 }

@@ -2,7 +2,9 @@ package controllers
 
 import (
 	"atube/services"
+	"context"
 	"fmt"
+	"net/http"
 
 	"github.com/gin-gonic/gin"
 	"gorm.io/gorm"
@@ -42,4 +44,23 @@ func (vc *VideoController) UploadVideo(c *gin.Context) {
 	}
 
 	c.JSON(200, response)
+}
+
+// GetAllVideo получает список всех видео.
+// @Summary Получить список видео
+// @Description Возвращает список всех доступных видео
+// @Tags Video
+// @Produce json
+// @Success 200 {array} models.Video "Успешный ответ"
+// @Router /videos [get]
+func (vc *VideoController) GetAllVideo(c *gin.Context) {
+	ctx := context.Background()
+
+	videos, err := vc.videoService.GetAllVideo(ctx)
+	if err != nil {
+		c.JSON(http.StatusInternalServerError, gin.H{"error": err.Error()})
+		return
+	}
+
+	c.JSON(http.StatusOK, gin.H{"videos": videos})
 }

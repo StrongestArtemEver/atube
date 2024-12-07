@@ -7,6 +7,7 @@ import (
 	"log"
 )
 
+
 func RegisterVideoRoutes(router *gin.Engine, db *gorm.DB) {
 	videoController, err := controllers.NewVideoController(db)
 	if err != nil {
@@ -14,4 +15,5 @@ func RegisterVideoRoutes(router *gin.Engine, db *gorm.DB) {
 	}
 
 	router.POST("/video/upload", videoController.UploadVideo)
+	router.GET("/videos", videoController.GetAllVideo)
 }
